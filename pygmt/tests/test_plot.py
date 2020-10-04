@@ -1,7 +1,5 @@
 # pylint: disable=redefined-outer-name
-"""
-Tests plot.
-"""
+"""Tests plot."""
 import datetime
 import os
 
@@ -21,19 +19,19 @@ POINTS_DATA = os.path.join(TEST_DATA_DIR, "points.txt")
 
 @pytest.fixture(scope="module")
 def data():
-    "Load the point data from the test file"
+    """Load the point data from the test file."""
     return np.loadtxt(POINTS_DATA)
 
 
 @pytest.fixture(scope="module")
 def region():
-    "The data region"
+    """The data region."""
     return [10, 70, -5, 10]
 
 
 @pytest.mark.mpl_image_compare
 def test_plot_red_circles(data, region):
-    "Plot the data in red circles passing in vectors"
+    """Plot the data in red circles passing in vectors."""
     fig = Figure()
     fig.plot(
         x=data[:, 0],
@@ -48,7 +46,7 @@ def test_plot_red_circles(data, region):
 
 
 def test_plot_fail_no_data(data):
-    "Plot should raise an exception if no data is given"
+    """Plot should raise an exception if no data is given."""
     fig = Figure()
     with pytest.raises(GMTInvalidInput):
         fig.plot(
@@ -87,7 +85,8 @@ def test_plot_fail_no_data(data):
 
 
 def test_plot_fail_size_color(data):
-    "Should raise an exception if array sizes and color are used with matrix"
+    """Should raise an exception if array sizes and color are used with
+    matrix."""
     fig = Figure()
     with pytest.raises(GMTInvalidInput):
         fig.plot(
@@ -112,7 +111,7 @@ def test_plot_fail_size_color(data):
 
 @pytest.mark.mpl_image_compare
 def test_plot_projection(data):
-    "Plot the data in green squares with a projection"
+    """Plot the data in green squares with a projection."""
     fig = Figure()
     fig.plot(
         x=data[:, 0],
@@ -128,7 +127,7 @@ def test_plot_projection(data):
 
 @pytest.mark.mpl_image_compare
 def test_plot_colors(data, region):
-    "Plot the data using z as sizes"
+    """Plot the data using z as sizes."""
     fig = Figure()
     fig.plot(
         x=data[:, 0],
@@ -145,7 +144,7 @@ def test_plot_colors(data, region):
 
 @pytest.mark.mpl_image_compare
 def test_plot_sizes(data, region):
-    "Plot the data using z as sizes"
+    """Plot the data using z as sizes."""
     fig = Figure()
     fig.plot(
         x=data[:, 0],
@@ -162,7 +161,7 @@ def test_plot_sizes(data, region):
 
 @pytest.mark.mpl_image_compare
 def test_plot_colors_sizes(data, region):
-    "Plot the data using z as sizes and colors"
+    """Plot the data using z as sizes and colors."""
     fig = Figure()
     fig.plot(
         x=data[:, 0],
@@ -180,7 +179,7 @@ def test_plot_colors_sizes(data, region):
 
 @pytest.mark.mpl_image_compare
 def test_plot_colors_sizes_proj(data, region):
-    "Plot the data using z as sizes and colors with a projection"
+    """Plot the data using z as sizes and colors with a projection."""
     fig = Figure()
     fig.coast(region=region, projection="M10i", frame="af", water="skyblue")
     fig.plot(
@@ -196,7 +195,7 @@ def test_plot_colors_sizes_proj(data, region):
 
 @pytest.mark.mpl_image_compare
 def test_plot_matrix(data):
-    "Plot the data passing in a matrix and specifying columns"
+    """Plot the data passing in a matrix and specifying columns."""
     fig = Figure()
     fig.plot(
         data=data,
@@ -212,7 +211,7 @@ def test_plot_matrix(data):
 
 @pytest.mark.mpl_image_compare
 def test_plot_matrix_color(data):
-    "Plot the data passing in a matrix and using a colormap"
+    """Plot the data passing in a matrix and using a colormap."""
     fig = Figure()
     fig.plot(
         data=data,
@@ -227,7 +226,7 @@ def test_plot_matrix_color(data):
 
 @pytest.mark.mpl_image_compare
 def test_plot_from_file(region):
-    "Plot using the data file name instead of loaded data"
+    """Plot using the data file name instead of loaded data."""
     fig = Figure()
     fig.plot(
         data=POINTS_DATA,
@@ -243,7 +242,7 @@ def test_plot_from_file(region):
 
 @pytest.mark.mpl_image_compare
 def test_plot_vectors():
-    "Plot vectors"
+    """Plot vectors."""
     azimuth = np.array([0, 45, 90, 135, 180, 225, 270, 310])
     lengths = np.linspace(0.1, 1, len(azimuth))
     lon = np.sin(np.deg2rad(azimuth))
@@ -264,7 +263,8 @@ def test_plot_vectors():
 
 @pytest.mark.mpl_image_compare
 def test_plot_lines_with_arrows():
-    """Plot lines with arrows.
+    """
+    Plot lines with arrows.
 
     The test is slightly different from test_plot_vectors().
     Here the vectors are plotted as lines, with arrows at the end.
@@ -281,7 +281,7 @@ def test_plot_lines_with_arrows():
 
 @pytest.mark.mpl_image_compare
 def test_plot_scalar_xy():
-    "Plot symbols given scalar x, y coordinates"
+    """Plot symbols given scalar x, y coordinates."""
     fig = Figure()
     fig.basemap(region=[-2, 2, -2, 2], frame=True)
     fig.plot(x=-1.5, y=1.5, style="c1c")
@@ -292,7 +292,7 @@ def test_plot_scalar_xy():
 
 @pytest.mark.mpl_image_compare
 def test_plot_datetime():
-    """Test various datetime input data"""
+    """Test various datetime input data."""
     fig = Figure()
     fig.basemap(
         projection="X15c/5c",

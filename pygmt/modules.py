@@ -1,6 +1,4 @@
-"""
-Non-plot GMT modules.
-"""
+"""Non-plot GMT modules."""
 import numpy as np
 import xarray as xr
 
@@ -34,7 +32,6 @@ def grdinfo(grid, **kwargs):
     -------
     info : str
         A string with information about the grid.
-
     """
     kind = data_kind(grid, None, None)
     with GMTTempFile() as outfile:
@@ -175,7 +172,6 @@ def which(fname, **kwargs):
     ------
     FileNotFoundError
         If the file is not found.
-
     """
     with GMTTempFile() as tmpfile:
         arg_str = " ".join([fname, build_arg_string(kwargs), "->" + tmpfile.name])
@@ -290,9 +286,7 @@ class GMTDataArrayAccessor:
 
     @property
     def registration(self):
-        """
-        Registration type of the grid, either Gridline (0) or Pixel (1).
-        """
+        """Registration type of the grid, either Gridline (0) or Pixel (1)."""
         return self._registration
 
     @registration.setter
@@ -307,10 +301,8 @@ class GMTDataArrayAccessor:
 
     @property
     def gtype(self):
-        """
-        Coordinate system type of the grid, either Cartesian (0) or Geographic
-        (1).
-        """
+        """Coordinate system type of the grid, either Cartesian (0) or
+        Geographic (1)."""
         return self._gtype
 
     @gtype.setter

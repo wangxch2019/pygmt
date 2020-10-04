@@ -1,6 +1,4 @@
-"""
-Tests for coast
-"""
+"""Tests for coast."""
 import pytest
 
 from .. import Figure
@@ -8,7 +6,7 @@ from .. import Figure
 
 @pytest.mark.mpl_image_compare
 def test_coast():
-    "Simple plot from the GMT docs"
+    """Simple plot from the GMT docs."""
     fig = Figure()
     fig.coast(
         R="-30/30/-40/40",
@@ -30,7 +28,7 @@ def test_coast():
 )
 @pytest.mark.mpl_image_compare
 def test_coast_iceland():
-    "Test passing in R as a list"
+    """Test passing in R as a list."""
     fig = Figure()
     fig.coast(R=[-30, -10, 60, 65], J="m1c", B=True, G="p28+r100")
     return fig
@@ -38,7 +36,7 @@ def test_coast_iceland():
 
 @pytest.mark.mpl_image_compare
 def test_coast_aliases():
-    "Test that all aliases work"
+    """Test that all aliases work."""
     fig = Figure()
     fig.coast(
         region="-30/30/-40/40",
@@ -57,7 +55,7 @@ def test_coast_aliases():
 
 @pytest.mark.mpl_image_compare
 def test_coast_world_mercator():
-    "Test passing generating a global Mercator map with coastlines"
+    """Test passing generating a global Mercator map with coastlines."""
     fig = Figure()
     fig.coast(
         region=[-180, 180, -80, 80],

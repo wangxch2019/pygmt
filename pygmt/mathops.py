@@ -1,6 +1,4 @@
-"""
-GMT modules for Mathematical operations on tables or grids
-"""
+"""GMT modules for Mathematical operations on tables or grids."""
 from .clib import Session
 from .exceptions import GMTInvalidInput
 from .helpers import build_arg_string, fmt_docstring, kwargs_to_strings, use_alias
@@ -51,7 +49,6 @@ def makecpt(**kwargs):
         is used, or when using *series=[z_min, z_max]*; in the first case the
         input CPT remains untouched, in the second case it is only scaled to
         match the range z_min/z_max.
-
     """
     with Session() as lib:
         if "H" not in kwargs.keys():  # if no output is set

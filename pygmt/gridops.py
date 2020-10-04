@@ -1,6 +1,4 @@
-"""
-GMT modules for grid operations
-"""
+"""GMT modules for grid operations."""
 
 import xarray as xr
 
